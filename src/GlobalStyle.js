@@ -85,7 +85,7 @@ li {
 ${"" /* resuable code section  */}
 
 .container {
-  max-width: 120rem;
+  max-width:75%;
   margin: 0 auto;
 }
 
@@ -159,7 +159,7 @@ input, textarea{
 
 @media (max-width: ${({ theme }) => theme.media.tab}) {
     .container {
-    max-width: 130rem;
+    max-width: 80%;
     padding: 0 3.2rem;
   }
   }
