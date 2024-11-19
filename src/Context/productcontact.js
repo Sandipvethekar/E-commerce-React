@@ -33,7 +33,7 @@ const AppProvider = ({ children }) => {
        }
      };
 
-     const getSingleProduct=async(url)=>{
+     const getSingleProduct=async(url)=>{                                                                                                                                                                                                                                                               
         dispatch({type:"SET_SINGLE_LOADING"});
        try {
         const res = await axios.get(url);
@@ -48,8 +48,7 @@ const AppProvider = ({ children }) => {
     useEffect(()=>{
         getProducts(API);
     },[]);
-
-
+    
     return (
         <AppContext.Provider value={{ ...state,getSingleProduct}}>
             {children}
@@ -57,7 +56,10 @@ const AppProvider = ({ children }) => {
     );
 };
 //custom hook 
-const useProductContext=(()=>{
-  return useContext(AppContext);
-});
+// const useProductContext=(()=>{
+//   return useContext(AppContext);
+// });
+const useProductContext = () => {
+    return useContext(AppContext);
+  };
 export { AppProvider, AppContext ,useProductContext};

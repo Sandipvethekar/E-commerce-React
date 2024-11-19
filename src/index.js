@@ -3,16 +3,16 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import {AppProvider} from "./Context/productcontact"
+import { AppProvider } from "./Context/productcontact"
 import { FilterContextProvider } from "./Context/Filter_context";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-    <AppProvider>
-         <FilterContextProvider>
+  <AppProvider>
+    <FilterContextProvider>
       <App />
     </FilterContextProvider>
-    </AppProvider>
+  </AppProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
