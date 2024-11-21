@@ -2,7 +2,7 @@
 import { createContext, useContext, useReducer, useEffect } from "react";
 import { useProductContext } from "./productcontact";
 import reducer from "../Reducer/FilterReducer";
-import { type } from "@testing-library/user-event/dist/type";
+
 
 const FilterContext = createContext();
 
@@ -13,6 +13,12 @@ const initialState = {
   sorting_value: "lowest",
   filters: {
     text: "",
+    category:"all",
+    company:"all",
+    color:"all",
+    minPrice: 0,
+    maxPrice:0,
+    price:0
   }
 };
 

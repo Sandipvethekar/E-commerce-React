@@ -85,7 +85,7 @@ li {
 ${"" /* resuable code section  */}
 
 .container {
-  max-width:75%;
+  max-width:90%;
   margin: 0 auto;
 }
 
