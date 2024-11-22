@@ -4,6 +4,7 @@ import { useProductContext } from "./productcontact";
 import reducer from "../Reducer/FilterReducer";
 
 
+
 const FilterContext = createContext();
 
 const initialState = {
@@ -47,6 +48,11 @@ export const FilterContextProvider = ({ children }) => {
     let value = event.target.value;
     return dispatch({ type: "UPDATE_FILTERS_VALUE", payload: { name, value } });
   }
+ 
+  const clearFilters = () => {
+    dispatch({ type: "CLEAR_FILTERS" });
+    dispatch({ type: "FILTER_PRODUCTS" }); // Re-trigger filtering after clearing
+  };
 
   useEffect(() => {
     dispatch({ type: "FILTER_PRODUCTS" });
@@ -60,7 +66,7 @@ export const FilterContextProvider = ({ children }) => {
 
   return (
     <FilterContext.Provider
-      value={{ ...state, setGridView, setListView, sorting, updateFilterValue }}>
+      value={{ ...state, setGridView, setListView, sorting, updateFilterValue,clearFilters}}>
       {children}
     </FilterContext.Provider>
   );

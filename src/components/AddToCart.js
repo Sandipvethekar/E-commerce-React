@@ -1,47 +1,49 @@
 import React from 'react'
 import styled from 'styled-components';
-import { useState } from "react"; 
+import { useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import CartAmountToggle from "../components/CartAmountToggle";
 import { NavLink } from 'react-router-dom';
-import {Button}  from "../styles/Button"
-const AddToCart = ({product}) => {
- const {id,colors,stock}=product;
- const [color, setColor] = useState(colors[0]);
- const [amount, setAmount] = useState(1);
+import { Button } from "../styles/Button"
+import { useCartContext } from '../Context/cart_context';
+const AddToCart = ({ product }) => {
+  const {addToCart}= useCartContext();
+  const { id, colors, stock } = product;
+  const [color, setColor] = useState(colors[0]);
+  const [amount, setAmount] = useState(1);
 
- const setDecrease = () => {
-   amount > 1 ? setAmount(amount - 1) : setAmount(1);
- };
+  const setDecrease = () => {
+    amount > 1 ? setAmount(amount - 1) : setAmount(1);
+  };
 
- const setIncrease = () => {
-   amount < stock ? setAmount(amount + 1) : setAmount(stock);
- };
+  const setIncrease = () => {
+    amount < stock ? setAmount(amount + 1) : setAmount(stock);
+  };
   return (
     <Wrapper>
-        <div className="colors">
-          <p>colors:
-            {
-                colors.map((curEl,index)=>{
-                    return <button key={index} style={{backgroundColor:curEl}}
-                    className={color ===curEl ? "btnStyle active" : "btnStyle"}
-                    onClick={() => setColor(curEl)} >
-                    {color === curEl ? <FaCheck className="checkStyle" /> : null}
-                    </button>
-                }
-                )
+      <div className="colors">
+        <p>colors:
+          {
+            colors.map((curEl, index) => {
+              return <button key={index} style={{ backgroundColor: curEl }}
+                className={color === curEl ? "btnStyle active" : "btnStyle"}
+                onClick={() => setColor(curEl)} >
+                {color === curEl ? <FaCheck className="checkStyle" /> : null}
+              </button>
             }
-          </p>
+            )
+          }
+        </p>
 
-        </div>
-        <CartAmountToggle
+      </div>
+      <CartAmountToggle
         amount={amount}
         setDecrease={setDecrease}
         setIncrease={setIncrease}
       />
-     <NavLink to="/card">
+      <NavLink to="/card" onClick={()=> addToCart(id, color, amount, product)}>
         <Button className="btn">Add TO Cart</Button>
-     </NavLink>
+      </NavLink>
     </Wrapper>
   )
 }

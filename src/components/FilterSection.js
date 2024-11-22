@@ -3,10 +3,14 @@ import styled from "styled-components";
 import { useFilterContext } from '../Context/Filter_context'
 import { FaCheck } from "react-icons/fa";
 import FormatPrice from "../Helper/FormatPrice";
+import { Button } from "../styles/Button";
+
+
 const FilterSection = () => {
   const {
     filters: { text, category, color, price, maxPrice, minPrice },
     all_products,
+    clearFilters,
     updateFilterValue
   } = useFilterContext();
 
@@ -42,7 +46,11 @@ const FilterSection = () => {
           />
         </form>
       </div>
-
+      <div className="filter-clear">
+        <Button className="btn" onClick={clearFilters}>
+          Clear
+        </Button>
+      </div>
       <div className="filter-category">
         <h3>Category</h3>
         <div>
@@ -149,7 +157,8 @@ const Wrapper = styled.section`
   .filter-search {
     input {
       padding: 0.6rem 1rem;
-      width: 80%;
+      width: 100%;
+      text-align:center;
     }
   }
 
@@ -239,8 +248,11 @@ const Wrapper = styled.section`
   }
 
   .filter-clear .btn {
-    background-color: #ec7063;
     color: #000;
+    padding:5px 20px;
+    background-color:rgb(246, 248, 250);
+    width:100%;
+
   }
 `;
 

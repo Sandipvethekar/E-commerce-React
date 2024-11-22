@@ -15,16 +15,23 @@ const Header = () => {
 }
 const MainHeader = styled.header`
   padding: 0 4.8rem;
-  height: 10rem;
+  height: 8rem;
   background-color: ${({ theme }) => theme.colors.bg};
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; 
+  background-color: rgb(246, 248, 250);
+  margin:100px
 
   .logo {
     height: 5rem;
   }
+   
 `;
 
 export default Header
