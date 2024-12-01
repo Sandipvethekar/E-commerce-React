@@ -1,13 +1,20 @@
-import { useContext } from "react";
+
 import styled from "styled-components";
 import { useCartContext } from "./Context/cart_context";
-import CartItem  from "./components/CartItem"
+import CartItem from "./components/CartItem"
 import { NavLink } from "react-router-dom";
 import { Button } from "./styles/Button";
+import FormatPrice from "./Helper/FormatPrice";
 const Cart = () => {
-  const { cart } = useCartContext();
+  const { cart, clearCart, total_price, shipping_fee } = useCartContext();
   const safeCart = Array.isArray(cart) ? cart : [];
-  console.log("card same", cart);
+
+
+  if (cart.length === 0) {
+    return <Mydiv>
+      <h3>No Data found In Cart</h3>
+    </Mydiv>
+  }
   return <Wrapper>
 
     <div className="container">
@@ -20,23 +27,23 @@ const Cart = () => {
       </div>
       <hr />
       <div className="cart-item">
-          {safeCart.map((curElem) => {
-            return <CartItem key={curElem.id} {...curElem} />;
-          })}
-        </div>
-    
+        {safeCart.map((curElem, index) => {
+          return <CartItem key={`${curElem.id}-${index}`} {...curElem} />;
+        })}
+      </div>
+
       <hr />
       <div className="cart-two-button">
-        <NavLink to="/products">
+        <NavLink to="/product">
           <Button> continue Shopping </Button>
         </NavLink>
-        {/* <Button className="btn btn-clear" onClick={clearCart}>
+        <Button className="btn btn-clear" onClick={clearCart}>
           clear cart
-        </Button> */}
+        </Button>
       </div>
 
       {/* order total_amount */}
-      {/* <div className="order-total--amount">
+      <div className="order-total--amount">
         <div className="order-total--subdata">
           <div>
             <p>subtotal:</p>
@@ -58,10 +65,17 @@ const Cart = () => {
             </p>
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
   </Wrapper>;
 };
+
+const Mydiv = styled.section`
+     display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+`;
 
 const Wrapper = styled.section`
   padding: 9rem 0;

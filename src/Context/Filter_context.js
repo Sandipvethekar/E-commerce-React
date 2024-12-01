@@ -3,8 +3,6 @@ import { createContext, useContext, useReducer, useEffect } from "react";
 import { useProductContext } from "./productcontact";
 import reducer from "../Reducer/FilterReducer";
 
-
-
 const FilterContext = createContext();
 
 const initialState = {
@@ -14,12 +12,12 @@ const initialState = {
   sorting_value: "lowest",
   filters: {
     text: "",
-    category:"all",
-    company:"all",
-    color:"all",
+    category: "all",
+    company: "all",
+    color: "all",
     minPrice: 0,
-    maxPrice:0,
-    price:0
+    maxPrice: 0,
+    price: 0
   }
 };
 
@@ -48,7 +46,7 @@ export const FilterContextProvider = ({ children }) => {
     let value = event.target.value;
     return dispatch({ type: "UPDATE_FILTERS_VALUE", payload: { name, value } });
   }
- 
+
   const clearFilters = () => {
     dispatch({ type: "CLEAR_FILTERS" });
     dispatch({ type: "FILTER_PRODUCTS" }); // Re-trigger filtering after clearing
@@ -66,7 +64,7 @@ export const FilterContextProvider = ({ children }) => {
 
   return (
     <FilterContext.Provider
-      value={{ ...state, setGridView, setListView, sorting, updateFilterValue,clearFilters}}>
+      value={{ ...state, setGridView, setListView, sorting, updateFilterValue, clearFilters }}>
       {children}
     </FilterContext.Provider>
   );

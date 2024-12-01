@@ -3,8 +3,10 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components'
 import { FiShoppingCart } from "react-icons/fi";
 import { CgMenu ,CgClose} from "react-icons/cg";
+import { useCartContext } from '../Context/cart_context';
 const Nav = () => {
     const [MenuIcon,setMenuIcon]= useState();
+    const {total_item}= useCartContext();
     return (
         <Wrapper>
             <div className={MenuIcon ? "navbar active":"navbar"}>
@@ -24,7 +26,7 @@ const Nav = () => {
                     <li>
                         <NavLink to="/card" className="navbar-link cart-trolley--link">
                             <FiShoppingCart className="cart-trolley " />
-                            <span className="cart-total--item">10</span>
+                            <span className="cart-total--item">{total_item}</span>
                         </NavLink>
                     </li>
                 </ul>

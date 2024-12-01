@@ -27,7 +27,7 @@ const App = () => {
       <Router>
         <GlobalStyle />
         <Header />
-        <div style={{ marginTop: "70px" }}>
+        <div style={{ marginTop: "90px" }}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />

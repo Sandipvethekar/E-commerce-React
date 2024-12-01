@@ -1,4 +1,4 @@
-import React from 'react'
+
 
 const ProductsReducer = (state, action) => {
     switch (action.type) {
@@ -7,7 +7,7 @@ const ProductsReducer = (state, action) => {
                 ...state,
                 isLoading: true,
             };
-    
+
         case "API_ERROR":
             return {
                 ...state,
@@ -36,14 +36,14 @@ const ProductsReducer = (state, action) => {
                 isSingleLoading: false,
                 singleProduct: action.payload,
             };
- 
-            case "SET_SINGLE_ERROR":
-                return {
-                    ...state,
-                    isSingleLoading: false,
-                    isError: true,
-                };
-    
+
+        case "SET_SINGLE_ERROR":
+            return {
+                ...state,
+                isSingleLoading: false,
+                isError: true,
+            };
+
         default:
             return state
 
